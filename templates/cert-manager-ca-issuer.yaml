@@ -1,0 +1,8 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: wso2-ca-issuer
+  namespace: wso2-des
+spec:
+  ca:
+    secretName: wso2-ca-secret

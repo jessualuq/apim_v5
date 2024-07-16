@@ -1,0 +1,43 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ws02-server
+  namespace: wso2-des
+spec:
+  secretName: wso2-server-tls
+  isCA: false
+  usages:
+    - server auth
+    - client auth
+  dnsNames:
+  - "wso2-server.wso2-des.svc.cluster.local"
+  - "wso2-server"
+  - "am.wso2.com"
+  - "gateway.am.wso2.com"
+  - "management.mi.wso2.com"
+  - "websocket.am.wso2.com"
+  - "websub.am.wso2.com"
+  issuerRef:
+    name: wso2-ca-issuer
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wso2-client
+  namespace: wso2-des
+spec:
+  secretName: wso2-client-tls
+  isCA: false
+  usages:
+    - server auth
+    - client auth
+  dnsNames:
+  - "wso2-client.wso2-des.svc.cluster.local"
+  - "wso2-client"
+  - "am.wso2.com"
+  - "gateway.am.wso2.com"
+  - "management.mi.wso2.com"
+  - "websocket.am.wso2.com"
+  - "websub.am.wso2.com"
+  issuerRef:
+    name: wso2-ca-issuer
