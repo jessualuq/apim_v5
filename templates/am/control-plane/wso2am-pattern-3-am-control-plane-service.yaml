@@ -27,10 +27,8 @@ spec:
   - name: servlet-http
     protocol: TCP
     port: 9763
-    nodePort: 30001
-    targetPort: http
+    nodePort: 30001    
   - name: servlet-https
     protocol: TCP
     port: 9443
     nodePort: 30002
-    targetPort: https
