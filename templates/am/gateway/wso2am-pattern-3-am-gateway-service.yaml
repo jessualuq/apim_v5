@@ -29,39 +29,31 @@ spec:
       protocol: TCP
       port: 8280
       nodePort: 30003
-      targetPort: http
     - name: pass-through-https
       protocol: TCP
       port: 8243
       nodePort: 30004
-      targetPort: https
     - name: servlet-http
       protocol: TCP
       port: 9763
       nodePort: 30005
-      targetPort: http
     - name: servlet-https
       protocol: TCP
       port: 9443
       nodePort: 30006
-      targetPort: https
     - name: websub-http
       protocol: TCP
       port: 9021
       nodePort: 30007
-      targetPort: http
     - name: websub-https
       protocol: TCP
       port: 8021
       nodePort: 30008
-      targetPort: https
     - name: websocket-http
       protocol: TCP
       port: 9099
       nodePort: 30009
-      targetPort: http
     - name: websocket-https
       protocol: TCP
       port: 8099
       nodePort: 30010
-      targetPort: https
