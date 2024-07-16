@@ -81,10 +81,13 @@ spec:
             runAsUser: 802
           ports:
             - containerPort: 8290
+              name: api-http
               protocol: TCP
             - containerPort: 9201
+              name: mgt-http
               protocol: TCP
             - containerPort: 9164
+              name: mgt-https
               protocol: TCP
           {{- if .Values.wso2.deployment.mi.synapseTest.enabled }}
             - containerPort: 9008
