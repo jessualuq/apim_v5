@@ -21,7 +21,7 @@ spec:
   type: NodePort
   # label keys and values that must match in order to receive traffic for this service
   selector:
-    deployment: {{ template "am-pattern-3.resource.prefix" . }}-am-gateway
+    app: {{ template "am-pattern-3.resource.prefix" . }}-am-gateway
   ports:
     # ports that this service should serve on
     - name: pass-through-http
