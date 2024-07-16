@@ -26,23 +26,22 @@ spec:
     - port: 8290      
       protocol: TCP
       nodePort: 30011
-      targetPort: http
-      name: pass-through-http
-    - port: 8253
-      targetPort: https
+      targetPort: api-http
+      name:  api-http
+    - port: 8253      
       protocol: TCP
       nodePort: 30012
-      name: pass-through-https
+      name:  api-https
     - port: 9201
-      targetPort: http
+      targetPort: mgt-http
       protocol: TCP
       nodePort: 30013
-      name: metrics
+      name: mgt-http
     - port: 9164
-      targetPort: https
+      targetPort: mgt-https
       nodePort: 30014
       protocol: TCP
-      name: management-https
+      name: mgt-https
   selector:
     deployment: {{ template "am-pattern-3.resource.prefix" . }}-mi
     node: {{ template "am-pattern-3.resource.prefix" . }}-mi-1
