@@ -38,7 +38,7 @@ spec:
       initContainers:
         - name: init-cp
           image: busybox:1.32
-          command: ['sh', '-c', 'echo -e "Checking for the availability of Control Plane deployment"; while ! nc -z {{ template "am-pattern-3.resource.prefix" . }}-am-cp-service 9443; do sleep 1; printf "-"; done; echo -e "  >> Control Plane has started";']
+          command: ['sh', '-c', 'echo -e "Checking for the availability of Control Plane deployment"; while ! nc -z 10.241.247.149 30002; do sleep 1; printf "-"; done; echo -e "  >> Control Plane has started";']
       containers:
       - name: wso2am-gateway
 {{- include "image" (dict "Values" .Values "deployment" .Values.wso2.deployment.am) | indent 8 }}
