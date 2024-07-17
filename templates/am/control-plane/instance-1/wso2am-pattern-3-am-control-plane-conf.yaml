@@ -56,12 +56,12 @@ data:
     password = "{{ .Values.wso2.deployment.am.cp.db.apim_shared.password }}"
     driver = "{{ .Values.wso2.deployment.am.cp.db.driver }}"
 
-    [keystore.tls]
-    file_name =  "wso2carbon.jks"
-    type =  "JKS"
-    password =  "wso2carbon"
-    alias =  "wso2carbon"
-    key_password =  "wso2carbon"
+    #[keystore.tls]
+    #file_name =  "wso2carbon.jks"
+    #type =  "JKS"
+    #password =  "wso2carbon"
+    #alias =  "wso2carbon"
+    #key_password =  "wso2carbon"
 
     [truststore]
     file_name = "client-truststore.jks"
