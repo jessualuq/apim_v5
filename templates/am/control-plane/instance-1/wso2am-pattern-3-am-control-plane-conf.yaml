@@ -122,6 +122,7 @@ data:
     [transport.https]
     properties.port = 9443
     properties.proxyPort = 443
+    SSLEnabled = false
 
     [apim.event_hub]
     enable = true
