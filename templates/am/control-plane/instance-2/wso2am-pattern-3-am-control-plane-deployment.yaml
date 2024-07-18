@@ -130,6 +130,9 @@ spec:
         - name: {{ template "am-pattern-3.resource.prefix" . }}-wso2-private-registry-creds
       {{ end }}
       volumes:
+        - name: wso2am-jks
+          configMap:
+            name: {{ template "am-pattern-3.resource.prefix" . }}-am-cp-2-jks
         - name: wso2am-conf
           configMap:
             name: {{ template "am-pattern-3.resource.prefix" . }}-am-cp-2-conf
