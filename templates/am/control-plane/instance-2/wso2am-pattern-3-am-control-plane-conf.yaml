@@ -90,7 +90,7 @@ data:
     display_in_api_console = true
     description = "This is a hybrid gateway that handles both production and sandbox token traffic."
     show_as_token_endpoint_url = true
-    service_url = "https://{{ template "am-pattern-3.resource.prefix" . }}-am-gateway-service:${mgt.transport.https.port}/services/"
+    service_url = "http://10.241.247.149:30005/services/"
     username= "${admin.username}"
     password= "${admin.password}"
     ws_endpoint = "ws://{{ .Values.wso2.deployment.am.websocket.hostname }}"
@@ -101,7 +101,7 @@ data:
     websub_event_receiver_https_endpoint = "https://{{ .Values.wso2.deployment.am.websub.hostname }}"
 
     [apim.devportal]
-    url = "http://{{ .Values.wso2.deployment.am.cp.hostname }}/devportal"
+    url = "http://10.241.247.149:30001/devportal"
     #enable_application_sharing = false
     #if application_sharing_type, application_sharing_impl both defined priority goes to application_sharing_impl
     #application_sharing_type = "default" #changed type, saml, default #todo: check the new config for rest api
@@ -130,7 +130,7 @@ data:
     enable = true
     username= "$ref{super_admin.username}"
     password= "$ref{super_admin.password}"
-    service_url = "https://{{ template "am-pattern-3.resource.prefix" . }}-am-cp-service:${mgt.transport.https.port}/services/"
+    service_url = "http://10.241.247.149:30001/services/"
     event_listening_endpoints = ["tcp://localhost:5672"]
     event_duplicate_url = ["tcp://{{ template "am-pattern-3.resource.prefix" . }}-am-cp-1-service:5672"]
     
@@ -171,7 +171,7 @@ data:
     #expiry_time = "2m"
 
     [apim.key_manager]
-    service_url = "https://{{ template "am-pattern-3.resource.prefix" . }}-am-cp-service:${mgt.transport.https.port}/services/"
+    service_url = "http://10.241.247.149:30001/services/"
     username = "$ref{super_admin.username}"
     password = "$ref{super_admin.password}"
     #pool.init_idle_capacity = 50
