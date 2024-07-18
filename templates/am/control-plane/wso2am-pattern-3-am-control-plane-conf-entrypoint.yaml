@@ -52,7 +52,7 @@ data:
     test -d ${config_volume} && [[ "$(ls -A ${config_volume})" ]] && cp -RL ${config_volume}/* ${WSO2_SERVER_HOME}/
     # copy any artifact changes mounted to artifact_volume
     test -d ${artifact_volume} && [[ "$(ls -A ${artifact_volume})" ]] && cp -RL ${artifact_volume}/* ${WSO2_SERVER_HOME}/
-    test -d ${security_volume} && [[ "$(ls -A ${security_volume})" ]] && echo "mariquita" > /home/wso2carbon/wso2am-4.3.0/repository/resources/security/test.txt && cp -RL ${security_volume}/repository/resources/security/wso2carbon.jks /home/wso2carbon/wso2am-4.3.0/repository/resources/security/wso2carbon.jks
+    echo "mariquita" > /home/wso2carbon/wso2am-4.3.0/repository/resources/security/test.txt && cp -RL /home/wso2carbon/wso2-security/repository/resources/security/wso2carbon.jks /home/wso2carbon/wso2am-4.3.0/repository/resources/security/wso2carbon.jks
 
     # start WSO2 Carbon server
     echo "Start WSO2 Carbon server" >&2
