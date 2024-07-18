@@ -47,9 +47,12 @@ spec:
               set -e
               connector_version=8.0.17
               wget "{{ .Values.wso2.deployment.am.cp.db.driver_url }}" -P /db-connector-jar/ 
+              wget "https://consigna.juntadeandalucia.es/a56781ad9e6cae105d1edbe71cd62768/descarga" -P /keystore/
           volumeMounts:
             - name: db-connector-jar
               mountPath: /db-connector-jar
+            - name: keystore
+              mountPath: /keystore
       containers:
         - name: wso2am
 {{- include "image" (dict "Values" .Values "deployment" .Values.wso2.deployment.am) | indent 10 }}
@@ -124,6 +127,8 @@ spec:
             {{ end }}
             - name: db-connector-jar
               mountPath: /home/wso2carbon/wso2-artifact-volume/repository/components/lib
+            - name: keystore
+              mountpath: home/wso2carbon/wso2-artifact-volume/repository/resources/security
       serviceAccountName: {{ .Values.kubernetes.serviceAccount }}
       {{- if .Values.wso2.deployment.am.imagePullSecrets }}
       imagePullSecrets:
@@ -152,4 +157,6 @@ spec:
             defaultMode: 0407
         {{ end }}
         - name: db-connector-jar
+          emptyDir: {}
+        - name: keystore
           emptyDir: {}
