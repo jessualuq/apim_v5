@@ -31,7 +31,7 @@ data:
     hostname = "{{ .Values.wso2.deployment.am.cp.hostname }}"
     node_ip = "$env{NODE_IP}"
     #offset=0
-    base_path = "${carbon.protocol}://${carbon.host}:${carbon.management.port}"
+    base_path = "http://10.241.247.149:30001"
     #discard_empty_caches = false
     server_role = "control-plane"
 
