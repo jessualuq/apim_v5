@@ -46,16 +46,10 @@ spec:
             - |
               set -e
               connector_version=8.0.17
-              wget "{{ .Values.wso2.deployment.am.cp.db.driver_url }}" -P /db-connector-jar/ &&
-              wget -O /keystore/wso2carbon.jks "https://consigna.juntadeandalucia.es/d6efad59872754a46180ee00b829a680/descarga" &&
-              wget -O /cliente/client-truststore.jks "https://consigna.juntadeandalucia.es/810daa399bb6f60c47f9e98c39888494/descarga"             
+              wget "{{ .Values.wso2.deployment.am.cp.db.driver_url }}" -P /db-connector-jar/             
           volumeMounts:
             - name: db-connector-jar
               mountPath: /db-connector-jar
-            - name: keystore
-              mountPath: /keystore
-            - name: cliente
-              mountPath: /cliente
       containers:
         - name: wso2am
 {{- include "image" (dict "Values" .Values "deployment" .Values.wso2.deployment.am) | indent 10 }}
@@ -114,12 +108,6 @@ spec:
             - name: JVM_MEM_OPTS
               value: "-Xms{{ .Values.wso2.deployment.am.cp.resources.jvm.heap.memory.xms }} -Xmx{{ .Values.wso2.deployment.am.cp.resources.jvm.heap.memory.xmx }}"
           volumeMounts:
-            - name: keystore
-              mountPath: /home/wso2carbon/wso2am-4.3.0/repository/resources/security/wso2carbon.jks
-              subPath: wso2carbon.jks
-            - name: cliente
-              mountPath: /home/wso2carbon/wso2am-4.3.0/repository/resources/security/client-truststore.jks
-              subPath: client-truststore.jks
             - name: wso2am-conf
               mountPath: /home/wso2carbon/wso2-config-volume/repository/conf
             {{ if .Values.wso2.deployment.persistentRuntimeArtifacts.apacheSolrIndexing.enabled }}
@@ -161,8 +149,4 @@ spec:
             defaultMode: 0407
         {{ end }}
         - name: db-connector-jar
-          emptyDir: {}
-        - name: keystore
-          emptyDir: {}
-        - name: cliente
           emptyDir: {}
