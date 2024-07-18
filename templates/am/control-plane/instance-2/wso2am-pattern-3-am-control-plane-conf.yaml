@@ -61,7 +61,7 @@ data:
     file_name =  "wso2carbon.jks"
     type =  "JKS"
     password =  "wso2carbon"
-    alias =  "justicia"
+    alias =  "wso2carbon"
     key_password =  "wso2carbon"
 
     [truststore]
