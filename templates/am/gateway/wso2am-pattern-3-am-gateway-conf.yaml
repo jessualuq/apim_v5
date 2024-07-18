@@ -99,12 +99,12 @@ data:
 
     [[apim.throttling.url_group]]
     traffic_manager_urls = ["tcp://{{ template "am-pattern-3.resource.prefix" . }}-am-cp-1-service:9611"]
-    traffic_manager_auth_urls = ["ssl://{{ template "am-pattern-3.resource.prefix" . }}-am-cp-1-service:9711"]
+    traffic_manager_auth_urls = ["tcp://{{ template "am-pattern-3.resource.prefix" . }}-am-cp-1-service:9611"]
     type = "loadbalance"
 
     [[apim.throttling.url_group]]
     traffic_manager_urls = ["tcp://{{ template "am-pattern-3.resource.prefix" . }}-am-cp-2-service:9611"]
-    traffic_manager_auth_urls = ["ssl://{{ template "am-pattern-3.resource.prefix" . }}-am-cp-2-service:9711"]
+    traffic_manager_auth_urls = ["tcp://{{ template "am-pattern-3.resource.prefix" . }}-am-cp-1-service:9611"]
     type = "loadbalance"
 
     {{ if .Values.wso2.choreoAnalytics.enabled }}
