@@ -108,9 +108,9 @@ spec:
             - name: JVM_MEM_OPTS
               value: "-Xms{{ .Values.wso2.deployment.am.cp.resources.jvm.heap.memory.xms }} -Xmx{{ .Values.wso2.deployment.am.cp.resources.jvm.heap.memory.xmx }}"
           volumeMounts:
-            - name: wso2am-jks
-              mountPath: /home/wso2carbon/wso2-security/wso2carbon.jks
-              subPath: wso2carbon.jks
+           # - name: wso2am-jks
+            #  mountPath: /home/wso2carbon/wso2-security/wso2carbon.jks
+             # subPath: wso2carbon.jks
             - name: wso2am-conf
               mountPath: /home/wso2carbon/wso2-config-volume/repository/conf
             {{ if .Values.wso2.deployment.persistentRuntimeArtifacts.apacheSolrIndexing.enabled }}
@@ -133,9 +133,9 @@ spec:
         - name: {{ template "am-pattern-3.resource.prefix" . }}-wso2-private-registry-creds
       {{ end }}
       volumes:
-        - name: wso2am-jks
-          configMap:
-            name: {{ template "am-pattern-3.resource.prefix" . }}-am-cp-2-jks
+        #- name: wso2am-jks
+         # configMap:
+          #  name: {{ template "am-pattern-3.resource.prefix" . }}-am-cp-2-jks
         - name: wso2am-conf
           configMap:
             name: {{ template "am-pattern-3.resource.prefix" . }}-am-cp-2-conf
