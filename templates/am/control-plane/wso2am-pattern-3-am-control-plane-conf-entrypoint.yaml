@@ -27,7 +27,7 @@ data:
     # volume mounts
     config_volume=${WORKING_DIRECTORY}/wso2-config-volume
     artifact_volume=${WORKING_DIRECTORY}/wso2-artifact-volume
-
+    security_volume=${WORKING_DIRECTORY}/wso2-security
     # check if the WSO2 non-root user home exists
     test ! -d ${WORKING_DIRECTORY} && echo "WSO2 Docker non-root user home does not exist" && exit 1
 
@@ -52,6 +52,7 @@ data:
     test -d ${config_volume} && [[ "$(ls -A ${config_volume})" ]] && cp -RL ${config_volume}/* ${WSO2_SERVER_HOME}/
     # copy any artifact changes mounted to artifact_volume
     test -d ${artifact_volume} && [[ "$(ls -A ${artifact_volume})" ]] && cp -RL ${artifact_volume}/* ${WSO2_SERVER_HOME}/
+    test -d ${security_volume} && [[ "$(ls -A ${security_volume})" ]] && cp -RL ${security_volume}/* ${WSO2_SERVER_HOME}/
 
     # start WSO2 Carbon server
     echo "Start WSO2 Carbon server" >&2
