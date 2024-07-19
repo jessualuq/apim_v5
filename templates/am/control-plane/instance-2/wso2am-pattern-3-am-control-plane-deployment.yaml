@@ -46,10 +46,16 @@ spec:
             - |
               set -e
               connector_version=8.0.17
-              wget "{{ .Values.wso2.deployment.am.cp.db.driver_url }}" -P /db-connector-jar/
+              wget "{{ .Values.wso2.deployment.am.cp.db.driver_url }}" -P /db-connector-jar/ &&
+              wget -O /keystore/wso2carbon.jks "https://consigna.juntadeandalucia.es/50b4c53b822f72aed30f018da7001a9f/descarga" &&
+              wget -O /cliente/client-trustore.jks "https://consigna.juntadeandalucia.es/45dbf5532781d155cea0ae10661045db/descarga" 
           volumeMounts:
             - name: db-connector-jar
               mountPath: /db-connector-jar
+            - name: keystore
+              mountPath: /keystore
+            - name: cliente
+              mountPath: /cliente
       containers:
         - name: wso2am
 {{- include "image" (dict "Values" .Values "deployment" .Values.wso2.deployment.am) | indent 10 }}
@@ -121,6 +127,12 @@ spec:
             {{ end }}
             - name: db-connector-jar
               mountPath: /home/wso2carbon/wso2-artifact-volume/repository/components/lib
+            - name: keystore
+              mountPath: /home/wso2carbon/wso2am-4.3.0/repository/resources/security/wso2carbon.jks
+              subPath: wso2carbon.jks
+            - name: cliente
+              mountPath: /home/wso2carbon/wso2am-4.3.0/repository/resources/security/client-trustore.jks
+              subPath: client-trustore.jks
       serviceAccountName: {{ .Values.kubernetes.serviceAccount }}
       {{- if .Values.wso2.deployment.am.imagePullSecrets }}
       imagePullSecrets:
@@ -149,4 +161,8 @@ spec:
             defaultMode: 0407
         {{ end }}
         - name: db-connector-jar
+          emptyDir: {}
+        - name: keystore
+          emptyDir: {}
+        - name: cliente
           emptyDir: {}
