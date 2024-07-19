@@ -31,4 +31,4 @@ spec:
   - name: servlet-https
     protocol: TCP
     port: 9443
-    nodePort: 30032
+    nodePort: 30002
