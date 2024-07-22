@@ -46,16 +46,10 @@ spec:
             - |
               set -e
               connector_version=8.0.17
-              wget "{{ .Values.wso2.deployment.am.cp.db.driver_url }}" -P /db-connector-jar/ &&
-              wget -O /keystore/wso2carbon.jks "https://consigna.juntadeandalucia.es/50b4c53b822f72aed30f018da7001a9f/descarga" &&
-              wget -O /cliente/client-trustore.jks "https://consigna.juntadeandalucia.es/45dbf5532781d155cea0ae10661045db/descarga" 
+              wget "{{ .Values.wso2.deployment.am.cp.db.driver_url }}" -P /db-connector-jar/ 
           volumeMounts:
             - name: db-connector-jar
               mountPath: /db-connector-jar
-            - name: keystore
-              mountPath: /keystore
-            - name: cliente
-              mountPath: /cliente
       containers:
         - name: wso2am
 {{- include "image" (dict "Values" .Values "deployment" .Values.wso2.deployment.am) | indent 10 }}
@@ -92,7 +86,7 @@ spec:
               memory: {{ .Values.wso2.deployment.am.cp.resources.limits.memory }}
               cpu: {{ .Values.wso2.deployment.am.cp.resources.limits.cpu }}
           securityContext:
-            runAsUser: 10001
+            runAsUser: 802
           ports:
             - containerPort: 9763
               protocol: "TCP"
@@ -127,12 +121,6 @@ spec:
             {{ end }}
             - name: db-connector-jar
               mountPath: /home/wso2carbon/wso2-artifact-volume/repository/components/lib
-            - name: keystore
-              mountPath: /home/wso2carbon/wso2am-4.3.0/repository/resources/security/wso2carbon.jks
-              subPath: wso2carbon.jks
-            - name: cliente
-              mountPath: /home/wso2carbon/wso2am-4.3.0/repository/resources/security/client-trustore.jks
-              subPath: client-trustore.jks
       serviceAccountName: {{ .Values.kubernetes.serviceAccount }}
       {{- if .Values.wso2.deployment.am.imagePullSecrets }}
       imagePullSecrets:
@@ -142,9 +130,6 @@ spec:
         - name: {{ template "am-pattern-3.resource.prefix" . }}-wso2-private-registry-creds
       {{ end }}
       volumes:
-        #- name: wso2am-jks
-         # configMap:
-          #  name: {{ template "am-pattern-3.resource.prefix" . }}-am-cp-2-jks
         - name: wso2am-conf
           configMap:
             name: {{ template "am-pattern-3.resource.prefix" . }}-am-cp-2-conf
@@ -161,8 +146,4 @@ spec:
             defaultMode: 0407
         {{ end }}
         - name: db-connector-jar
-          emptyDir: {}
-        - name: keystore
-          emptyDir: {}
-        - name: cliente
           emptyDir: {}
