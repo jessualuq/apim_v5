@@ -69,12 +69,12 @@ data:
     type = "JKS"
     password = "wso2carbon"
 
-    [keystore.primary]
-    file_name =  "wso2carbon.jks"
-    type =  "JKS"
-    password =  "wso2carbon"
-    alias =  "wso2carbon"
-    key_password =  "wso2carbon"
+    #[keystore.primary]
+    #file_name =  "wso2carbon.jks"
+    #type =  "JKS"
+    #password =  "wso2carbon"
+    #alias =  "wso2carbon"
+    #key_password =  "wso2carbon"
 
     #[keystore.internal]
     #file_name =  "wso2carbon.jks"
@@ -168,7 +168,7 @@ data:
     #expiry_time = "2m"
 
     [apim.key_manager]
-    service_url = "https://wso2am-des.justicia.junta-andalucia.es/services/"
+    service_url = "https://{{ template "am-pattern-3.resource.prefix" . }}-am-cp-service:${mgt.transport.https.port}/services/"
     username = "$ref{super_admin.username}"
     password = "$ref{super_admin.password}"
     #pool.init_idle_capacity = 50
