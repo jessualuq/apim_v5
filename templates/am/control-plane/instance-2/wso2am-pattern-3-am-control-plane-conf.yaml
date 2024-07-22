@@ -90,7 +90,7 @@ data:
     display_in_api_console = true
     description = "This is a hybrid gateway that handles both production and sandbox token traffic."
     show_as_token_endpoint_url = true
-    service_url = "https://{{ template "am-pattern-3.resource.prefix" . }}-am-gateway-service:${mgt.transport.https.port}/services/"
+    service_url = "https://{{ template "am-pattern-3.resource.prefix" . }}-am-gateway-service-internal:${mgt.transport.https.port}/services/"
     username= "${admin.username}"
     password= "${admin.password}"
     ws_endpoint = "ws://{{ .Values.wso2.deployment.am.websocket.hostname }}"
