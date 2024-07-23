@@ -27,16 +27,18 @@ spec:
   selector:
     matchLabels:
       deployment: {{ template "am-pattern-3.resource.prefix" . }}-am-gateway
-      app: {{ template "am-pattern-3.resource.prefix" . }}-am-gateway
   template:
     metadata:
       annotations:
         checksum.am.gw.conf: {{ include (print $.Template.BasePath "/am/gateway/wso2am-pattern-3-am-gateway-conf.yaml") . | sha256sum }}
       labels:
         deployment: {{ template "am-pattern-3.resource.prefix" . }}-am-gateway
-        app: {{ template "am-pattern-3.resource.prefix" . }}-am-gateway
         product: apim
     spec:
+      initContainers:
+        - name: init-cp
+          image: busybox:1.32
+          command: ['sh', '-c', 'echo -e "Checking for the availability of Control Plane deployment"; while ! nc -z {{ template "am-pattern-3.resource.prefix" . }}-am-cp-service-internal 9443; do sleep 1; printf "-"; done; echo -e "  >> Control Plane has started";']
       containers:
       - name: wso2am-gateway
 {{- include "image" (dict "Values" .Values "deployment" .Values.wso2.deployment.am) | indent 8 }}
@@ -83,7 +85,7 @@ spec:
             memory: {{ .Values.wso2.deployment.am.resources.limits.memory }}
             cpu: {{ .Values.wso2.deployment.am.resources.limits.cpu }}
         securityContext:
-          runAsUser: 10001
+          runAsUser: 802
         ports:
         - containerPort: 8280
           protocol: TCP
