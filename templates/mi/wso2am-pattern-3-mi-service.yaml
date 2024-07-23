@@ -26,19 +26,16 @@ spec:
     - port: 8290      
       protocol: TCP
       nodePort: 30011
-      targetPort: api-http
       name:  api-http
     - port: 8253      
       protocol: TCP
       nodePort: 30012
       name:  api-https
-    - port: 9201
-      targetPort: mgt-http
+    - port: 9201      
       protocol: TCP
       nodePort: 30013
       name: mgt-http
-    - port: 9164
-      targetPort: mgt-https
+    - port: 9164   
       nodePort: 30014
       protocol: TCP
       name: mgt-https
