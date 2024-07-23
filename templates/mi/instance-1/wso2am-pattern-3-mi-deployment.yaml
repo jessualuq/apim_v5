@@ -89,6 +89,8 @@ spec:
           ports:
             - containerPort: 8290
               protocol: TCP
+            - containerPort: 8253
+              protocol: TCP
             - containerPort: 9201
               protocol: TCP
             - containerPort: 9164
