@@ -59,7 +59,7 @@ spec:
               command:
                 - /bin/sh
                 - -c
-                - nc -z localhost 8290
+                - nc -z localhost 8253
             initialDelaySeconds: {{ .Values.wso2.deployment.mi.startupProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.wso2.deployment.mi.startupProbe.periodSeconds }}
             failureThreshold: {{ .Values.wso2.deployment.mi.startupProbe.failureThreshold }}
@@ -68,7 +68,7 @@ spec:
               command:
                 - /bin/sh
                 - -c
-                - nc -z localhost 8290
+                - nc -z localhost 8253
             periodSeconds: {{ .Values.wso2.deployment.mi.livenessProbe.periodSeconds }}
           readinessProbe:
             httpGet:
