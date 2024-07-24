@@ -31,14 +31,6 @@ spec:
       targetPort: 8253
       protocol: TCP
       name: pass-through-https
-    - port: 9201
-      targetPort: 9201
-      protocol: TCP
-      name: metrics
-    - port: 9164
-      targetPort: 9164
-      protocol: TCP
-      name: management
     {{- if .Values.wso2.deployment.mi.synapseTest.enabled }}
     - port: 9008
       targetPort: 9008
