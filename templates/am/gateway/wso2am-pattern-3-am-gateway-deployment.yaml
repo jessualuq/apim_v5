@@ -88,13 +88,13 @@ spec:
           runAsUser: 10001
         ports:
         - containerPort: 8280
-          protocol: TCP
+          protocol: "TCP"
         - containerPort: 8243
-          protocol: TCP
+          protocol: "TCP"
         - containerPort: 9763
-          protocol: TCP
+          protocol: "TCP"
         - containerPort: 9443
-          protocol: TCP
+          protocol: "TCP"
         volumeMounts:
         - name: wso2am-gateway-conf
           mountPath: /home/wso2carbon/wso2-config-volume/repository/conf
