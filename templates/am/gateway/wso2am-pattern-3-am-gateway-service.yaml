@@ -22,7 +22,6 @@ spec:
   # label keys and values that must match in order to receive traffic for this service
   selector:
     deployment: {{ template "am-pattern-3.resource.prefix" . }}-am-gateway
-    app: {{ template "am-pattern-3.resource.prefix" . }}-am-gateway
   ports:
     # ports that this service should serve on
     - name: pass-through-http
@@ -41,19 +40,3 @@ spec:
       protocol: TCP
       port: 9443
       nodePort: 30006
-    - name: websub-http
-      protocol: TCP
-      port: 9021
-      nodePort: 30007
-    - name: websub-https
-      protocol: TCP
-      port: 8021
-      nodePort: 30008
-    - name: websocket-http
-      protocol: TCP
-      port: 9099
-      nodePort: 30009
-    - name: websocket-https
-      protocol: TCP
-      port: 8099
-      nodePort: 30010
