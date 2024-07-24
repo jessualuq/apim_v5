@@ -23,14 +23,6 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 8290      
-      protocol: TCP
-      nodePort: 30011
-      name:  api-http
-    - port: 8253      
-      protocol: TCP
-      nodePort: 30012
-      name:  api-https
     - port: 9201      
       protocol: TCP
       nodePort: 30013
