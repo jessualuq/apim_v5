@@ -168,7 +168,7 @@ data:
     #expiry_time = "2m"
 
     [apim.key_manager]
-    service_url = "https://{{ template "am-pattern-3.resource.prefix" . }}-am-cp-service-internal:${mgt.transport.https.port}/services/"
+    service_url = "https://wso2am-pattern-3-am-cp-service-internal:9443/services/"
     username = "$ref{super_admin.username}"
     password = "$ref{super_admin.password}"
     #pool.init_idle_capacity = 50
