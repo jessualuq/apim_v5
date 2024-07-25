@@ -69,7 +69,7 @@ data:
 
     # key manager implementation
     [apim.key_manager]
-    service_url = "https://wso2am-pattern-3-am-cp-service-internal:9443/services/"
+    service_url = "http://wso2am-pattern-3-am-cp-service-internal:9763/services/"
     username= "$ref{super_admin.username}"
     password= "$ref{super_admin.password}"
 
