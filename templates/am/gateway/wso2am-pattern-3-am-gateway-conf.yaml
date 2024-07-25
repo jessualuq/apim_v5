@@ -29,7 +29,7 @@ data:
   deployment.toml: |-
     [server]
     hostname = "{{ .Values.wso2.deployment.am.gateway.hostname }}"
-    internal_hostname = "wso2am-pattern-3-am-cp-service-internal"
+    internal_hostname = "{{ .Values.resource.prefix }}-am-gateway-service"
     node_ip = "$env{NODE_IP}"
     server_role = "gateway-worker"
 
@@ -69,7 +69,7 @@ data:
 
     # key manager implementation
     [apim.key_manager]
-    service_url = "http://wso2am-pattern-3-am-cp-service-internal:9763/services/"
+    service_url = "https://{{ .Values.resource.prefix }}-am-cp-1-service:9443/services/"
     username= "$ref{super_admin.username}"
     password= "$ref{super_admin.password}"
 
@@ -135,9 +135,7 @@ data:
     [apim.oauth_config]
     remove_outbound_auth_header = true
     auth_header = "Authorization"
-    [[apim.jwt.issuer]]
-    name = "https://loclahost:9443/oauth2/token"
-    jwks.url = "https://localhost:9443/oauth2/jwks"
+    
     [apim.cors]
     allow_origins = "*"
     allow_methods = ["GET","PUT","POST","DELETE","PATCH","OPTIONS"]
@@ -146,5 +144,6 @@ data:
 
     [transport.passthru_https.sender.parameters]
     HostnameVerifier = "AllowAll"
+    port = "8243"
 
   {{- end }}
