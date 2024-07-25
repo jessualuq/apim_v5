@@ -168,7 +168,7 @@ data:
     #expiry_time = "2m"
 
     [apim.key_manager]
-    service_url = "https://{{ .Values.resource.prefix }}-am-cp-service-internal:${mgt.transport.https.port}/services/"
+    service_url = "https://{{ .Values.wso2.deployment.am.cp.hostname }}/services/"
     username = "$ref{super_admin.username}"
     password = "$ref{super_admin.password}"
     #pool.init_idle_capacity = 50
