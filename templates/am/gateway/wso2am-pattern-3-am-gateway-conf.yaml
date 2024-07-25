@@ -68,7 +68,7 @@ data:
 
     # key manager implementation
     [apim.key_manager]
-    service_url = "https://{{ .Values.resource.prefix }}-am-cp-1-service:9443/services/"
+    service_url = "https://{{ template "am-pattern-3.resource.prefix" . }}-am-cp-service-internal:${mgt.transport.https.port}/services/"
     username= "$ref{super_admin.username}"
     password= "$ref{super_admin.password}"
 
