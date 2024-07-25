@@ -136,8 +136,8 @@ data:
     remove_outbound_auth_header = true
     auth_header = "Authorization"
     [[apim.jwt.issuer]]
-    name = "http://wso2am-pattern-3-am-cp-service-internal:9763/oauth2/token"
-    jwks.url = "http://wso2am-pattern-3-am-cp-service-internal:9763/oauth2/jwks"
+    name = "https://loclahost:9443/oauth2/token"
+    jwks.url = "https://localhost:9443/oauth2/jwks"
     [apim.cors]
     allow_origins = "*"
     allow_methods = ["GET","PUT","POST","DELETE","PATCH","OPTIONS"]
